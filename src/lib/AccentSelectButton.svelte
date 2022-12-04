@@ -1,11 +1,17 @@
 <script>
-	export let accentColor = { name: "white", hex: "#FFF" };
+	export let accentColor = {
+		name: "white",
+		hexCodes: {
+			accent: "#FFF",
+			theme: "#FFF"
+		}
+	};
 	export let selected = true;
 </script>
 
 <button
 	on:click
-	style="--hex: {accentColor.hex};"
+	style="--hex: {accentColor.hexCodes.accent};"
 	class={selected ? "button-selected" : ""}
 	type="button"/>
 

@@ -3,16 +3,56 @@
   import AccentSelectButton from './lib/AccentSelectButton.svelte';
   import Experience from './lib/Experience.svelte';
 
+  /*
+    themeColor: used to set the meta property in head
+    accentColor: used for everything else
+  */
   const accentColors = [
-    { name: "green", hex: "#5EBD3E" },
-    { name: "yellow", hex: "#FFB900" },
-    { name: "orange", hex: "#F78200" },
-    { name: "red", hex: "#E23838" },
-    { name: "purple", hex: "#973999" },
-    { name: "blue", hex: "#009CDF" },
+    {
+      name: "green",
+      hexCodes: {
+        theme: "#58A941",
+        accent: "#58A941"
+      }
+    },
+    {
+      name: "yellow",
+      hexCodes: {
+        theme: "#CA8B02",
+        accent: "#e5a400"
+      }
+    },
+    {
+      name: "orange",
+      hexCodes: {
+        theme: "#EC7608",
+        accent: "#EC7608"
+      }
+    },
+    {
+      name: "red",
+      hexCodes: {
+        theme: "#E65453",
+        accent: "#e7514f"
+      }
+    },
+    {
+      name: "purple",
+      hexCodes: {
+        theme: "#A759A8",
+        accent: "#cd5dc6"
+      },
+    },
+    {
+      name: "blue",
+      hexCodes: {
+        theme: "#1FA4DB",
+        accent: "#1FA4DB"
+      }
+    }
   ]
 
-  $: selectedColor = { name: "blue", hex: "#009CDF"};
+  $: selectedColor = accentColors[5];
   var imageUrl = `${import.meta.env.VITE_S3_URL}/me.jpeg`;
 
   function toggleLonnie() {
@@ -31,22 +71,22 @@
 <svelte:head>
   <link rel="icon" type="image/png" href={`${selectedColor.name}/favicon.png`}/>
   <link rel="apple-touch-icon" type="image/png" href={`${selectedColor.name}/favicon.png`}/>
-  <meta name="theme-color" content="{selectedColor.hex}" />
+  <meta name="theme-color" content="{selectedColor.hexCodes.theme}" />
 </svelte:head>
 
 <main>
-    <Header color={selectedColor.hex}/>
+    <Header color={selectedColor.hexCodes.accent}/>
 
     {#each accentColors as color}
       <AccentSelectButton
         accentColor={color}
         on:click={() => updateColors(color)}
-        selected={color.hex == selectedColor.hex }
+        selected={color.hexCodes.accent == selectedColor.hexCodes.accent}
         />
     {/each}
 
 	  <!--About-->
-    <h2 style="color: {selectedColor.hex};">About</h2>
+    <h2 style="color: {selectedColor.hexCodes.accent};">About</h2>
 
     <div class="about">
       <div class="photo" on:mouseover={toggleMemoji} on:focus={toggleMemoji} on:mouseleave={toggleLonnie}>
@@ -76,7 +116,7 @@
     </ul>
     </div>
 
-    <h2 style="color: {selectedColor.hex};" >Experience</h2>
+    <h2 style="color: {selectedColor.hexCodes.accent};" >Experience</h2>
     <p>
       If you would prefer my resume, you can find that
       <a href="{import.meta.env.VITE_S3_URL}/resume/{selectedColor.name}/gerol-resume.pdf" target="_blank" rel="noreferrer">here</a>.
@@ -91,7 +131,7 @@
           photoSrc: `${import.meta.env.VITE_S3_URL}/companies/bryx.jpg`
         }
       }
-      accentColor={selectedColor.hex}>
+      accentColor={selectedColor.hexCodes.accent}>
       <p style="display: inline;">
         At <a href="https://bryx.com">Bryx</a>
         I worked with a small team of iOS developers to improve
@@ -109,7 +149,7 @@
           photoSrc: `${import.meta.env.VITE_S3_URL}/companies/apple.jpg`
         }
       }
-      accentColor={selectedColor.hex}>
+      accentColor={selectedColor.hexCodes.accent}>
       <p style="display: inline;">
         At <a href="https://apple.com">Apple</a>,
         I worked on a team that was in charge of the tvOS system shell.
@@ -127,7 +167,7 @@
           photoSrc: `${import.meta.env.VITE_S3_URL}/companies/macro.jpg`
         }
       }
-      accentColor={selectedColor.hex}
+      accentColor={selectedColor.hexCodes.accent}
       >
       <p style="display: inline;">
         At <a href="https://macro.io">Macro</a>
@@ -145,7 +185,7 @@
           photoSrc: `${import.meta.env.VITE_S3_URL}/companies/bbt.jpg`
         }
       }
-      accentColor={selectedColor.hex}>
+      accentColor={selectedColor.hexCodes.accent}>
       <p style="display: inline;">
         Designed and programmed native
         <a href="https://apps.apple.com/us/app/bbt-access/id1523959641"> iOS </a>

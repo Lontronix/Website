@@ -11,6 +11,7 @@
 
 <style>
 	button {
+		padding: 0;
 		border: solid;
 		border-width: 5px;
 		border-radius: 50%;

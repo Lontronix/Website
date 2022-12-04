@@ -29,8 +29,8 @@
 </script>
 
 <svelte:head>
-  <link rel="icon" type="image/png" href={`public/${selectedColor.name}/favicon.png`}/>
-  <link rel="apple-touch-icon" type="image/png" href="/blue/favicon.png"/>
+  <link rel="icon" type="image/png" href={`${selectedColor.name}/favicon.png`}/>
+  <link rel="apple-touch-icon" type="image/png" href={`${selectedColor.name}/favicon.png`}/>
   <meta name="theme-color" content="{selectedColor.hex}" />
 </svelte:head>
 
@@ -79,7 +79,7 @@
     <h2 style="color: {selectedColor.hex};" >Experience</h2>
     <p>
       If you would prefer my resume, you can find that
-      <a href="gerol-resume.pdf">here</a>.
+      <a href="{import.meta.env.VITE_S3_URL}/resume/{selectedColor.name}/gerol-resume.pdf" target="_blank" rel="noreferrer">here</a>.
     </p>
 
     <!--Bryx-->
